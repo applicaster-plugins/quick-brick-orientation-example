@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/applicaster-plugins/quick-brick-orientation-example#readme",
   "dependencies": {
+    "@applicaster/zapp-react-native-bridge": "^2.2.0",
     "ramda": "^0.26.1",
     "react-native": "0.59.10"
   },

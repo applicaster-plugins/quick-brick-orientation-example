@@ -1,0 +1,30 @@
+{
+  "name": "@applicaster/quick-brick-orientation-example",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postpublish": "zappifest publish --manifest ./manifest/android.json && zappifest publish --manifest ./manifest/ios.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/applicaster-plugins/quick-brick-orientation-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/applicaster-plugins/quick-brick-orientation-example/issues"
+  },
+  "homepage": "https://github.com/applicaster-plugins/quick-brick-orientation-example#readme",
+  "dependencies": {
+    "ramda": "^0.26.1",
+    "react-native": "0.59.10"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.0",
+    "eslint-plugin-react-native": "^3.8.1"
+  }
+}

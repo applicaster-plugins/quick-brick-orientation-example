@@ -1,0 +1,18 @@
+{
+  "name": "Quick Brick Orientation Example",
+  "type": "general",
+  "identifier": "quick_brick_orientation_example",
+  "author_name": "Zapp",
+  "description": "Quick Brick orientation example screen",
+  "author_email": "zapp@applicaster.com",
+  "dependency_name": "@applicaster/quick-brick-orientation-example",
+  "dependency_version": "0.1.0",
+  "manifest_version": "0.1.0",
+  "min_zapp_sdk": "0.0.1",
+  "whitelisted_account_ids": ["5b55be2e64f041000ceaee24"],
+  "ui_builder_support": true,
+  "react_native": true,
+  "platform": "android",
+  "screen": true,
+  "targets": ["mobile"]
+}

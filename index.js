@@ -6,11 +6,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "black"
+    backgroundColor: "black",
+    width: "100%",
+    height: "100%"
   },
   text: {
     color: "white",
-    size: 25
+    fontSize: 25
   }
 });
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, DeviceEventEmitter } from "react-native";
 import {
   sendQuickBrickEvent,
@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "black",
     width: "100%",
     height: "100%",
   },
@@ -19,19 +18,33 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
 });
+
+const colorMap = {
+  "1": "black",
+  "2": "red",
+  "4": "green",
+  "6": "yellow",
+  "8": "blue",
+};
 const App = () => {
+  const [orientation, setOrientation] = useState(1);
   sendQuickBrickEvent("allowedOrientationsForScreen", {
     orientation: 1,
   });
   useEffect(() => {
-    DeviceEventEmitter.addListener("orientationChange", res =>
-      console.log("Callback:", res)
-    );
+    DeviceEventEmitter.addListener("orientationChange", res => {
+      console.log("Callback:", res);
+      setOrientation(res.orientation);
+    });
     return DeviceEventEmitter.removeListener("orientationChange");
   }, []);
-  console.log("it works!");
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: colorMap[String(orientation)] || "black" },
+      ]}
+    >
       <Text style={styles.text}>Hello World!</Text>
     </View>
   );

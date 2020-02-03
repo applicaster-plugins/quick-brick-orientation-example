@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, DeviceEventEmitter } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  DeviceEventEmitter,
+  Dimensions,
+} from "react-native";
 import {
   sendQuickBrickEvent,
   NativeEventEmitter,
@@ -28,16 +34,22 @@ const colorMap = {
 };
 const App = () => {
   const [orientation, setOrientation] = useState(1);
-  sendQuickBrickEvent("allowedOrientationsForScreen", {
-    orientation: 1,
-  });
+
   useEffect(() => {
+    sendQuickBrickEvent("allowedOrientationsForScreen", {
+      orientation: 1,
+    });
     DeviceEventEmitter.addListener("orientationChange", res => {
       console.log("Callback:", res);
       setOrientation(res.orientation);
     });
-    return DeviceEventEmitter.removeListener("orientationChange");
+
+    return () => {
+      sendQuickBrickEvent("releaseOrientationsForScreen");
+      DeviceEventEmitter.removeListener("orientationChange");
+    };
   }, []);
+
   return (
     <View
       style={[

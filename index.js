@@ -41,7 +41,7 @@ const App = () => {
     });
     DeviceEventEmitter.addListener("orientationChange", res => {
       console.log("Callback:", res);
-      setOrientation(res.orientation);
+      setOrientation(res.toOrientation);
     });
 
     return () => {

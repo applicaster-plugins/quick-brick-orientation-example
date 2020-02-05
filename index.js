@@ -10,6 +10,13 @@ import {
   sendQuickBrickEvent,
   NativeEventEmitter,
 } from "@applicaster/zapp-react-native-bridge/QuickBrick";
+import {
+  ORIENTATIONS,
+  allowedOrientationsForScreen,
+  releaseOrientationsForScreen,
+  addOrientationChangeListener,
+  removeOrientationChangeListener,
+} from "@applicaster/zapp-react-native-utils/appUtils/orientationHelper";
 
 const styles = StyleSheet.create({
   container: {
@@ -32,21 +39,22 @@ const colorMap = {
   "6": "yellow",
   "8": "blue",
 };
+
 const App = () => {
   const [orientation, setOrientation] = useState(1);
 
   useEffect(() => {
-    sendQuickBrickEvent("allowedOrientationsForScreen", {
-      orientation: 1,
-    });
-    DeviceEventEmitter.addListener("orientationChange", res => {
-      console.log("Callback:", res);
-      setOrientation(res.toOrientation);
+    allowedOrientationsForScreen([
+      ORIENTATIONS.portrait,
+      ORIENTATIONS.landscapeSensor,
+    ]);
+    const listener = addOrientationChangeListener(({ toOrientation }) => {
+      setOrientation(toOrientation);
     });
 
     return () => {
-      sendQuickBrickEvent("releaseOrientationsForScreen");
-      DeviceEventEmitter.removeListener("orientationChange");
+      releaseOrientationsForScreen();
+      removeOrientationChangeListener(listener);
     };
   }, []);
 
